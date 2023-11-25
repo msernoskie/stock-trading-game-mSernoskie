@@ -1,0 +1,97 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    padding: 20px;
+}
+
+#gameContainer {
+    background-color: white;
+    width: 300px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#stockPrice, #playerMoney, #playerDebt {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+#startScreen {
+    text-align: center;
+    /* Add more styling as needed */
+}
+
+#gameScreen {
+    /* Add styling for your game screen */
+}
+#gameOverScreen {
+    display: none; /* Initially hidden, shown when game is over */
+    background-color: white;
+    width: 300px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: red;
+}
+.money-change-effect {
+    position: absolute;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #333;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 1em;
+    opacity: 1;
+    pointer-events: none; /* So it doesn't block clicks */
+}
+
+@keyframes floatUpFadeOut {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-50px); 
+        opacity: 0;
+    }
+}
+.hidden {
+    display: none;
+}
+
+#messageBox {
+    color: red; /* Or any style you prefer */
+    position: absolute;
+    bottom: 10px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 1; /* Start fully visible */
+    transition: opacity 4s ease; /* Transition for the opacity change */
+}
+
+.hidden {
+    display: none;
+    opacity: 0; /* Start with 0 opacity when hidden */
+}
+
+.fadeOut {
+    opacity: 0; /* End with 0 opacity */
+}
