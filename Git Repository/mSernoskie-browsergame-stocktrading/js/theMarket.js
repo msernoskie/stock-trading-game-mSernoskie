@@ -51,7 +51,11 @@ let dropChance = 0.10; // 10% initial chance
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('startButton').addEventListener('click', startGame);
     document.getElementById('buyButton').addEventListener('click', buyStock);
+    document.getElementById('buy10Button').addEventListener('click', buy10Stock);
+    document.getElementById('buy100Button').addEventListener('click', buy100Stock);
     document.getElementById('sellButton').addEventListener('click', sellStock);
+    document.getElementById('sell10Button').addEventListener('click', sell10Stock);
+    document.getElementById('sell100Button').addEventListener('click', sell100Stock);
 });
 
 function startGame() {
@@ -61,6 +65,11 @@ function startGame() {
     // Start stock price fluctuation, etc.
     setInterval(updateStockPrice, 2000); // Start the stock price fluctuation
     setInterval(increaseDebt, 25000); // Correct interval for debt increase
+
+    updatePlayerMoney();//Initialize all numbers
+    updatePlayerDebt();
+    updateDisplay();
+
 }
 
 function buyStock() {
@@ -81,11 +90,57 @@ function buyStock() {
 
         // Show the total cost as a negative number
         showMoneyChangeEffect(-totalCost, 'buy');
+        updateDisplay();
     } else {
         showMessage("Not enough money to buy stock!");
     }
 }
+function buy10Stock() {
+    // Calculate the total cost to buy one stock (including the fee)
+    let totalCost = currentStockPrice*10 + transactionFee;
 
+    // Check if the player has enough money to buy one stock
+    if (playerMoney >= totalCost) {
+        // Deduct the cost from the player's money
+        playerMoney -= totalCost;
+
+        // Increment the stock holdings since a stock is bought
+        stockHoldings += 10; // Assuming buying one stock at a time
+
+        // Update the display
+        updatePlayerMoney();
+        // ... any other updates related to stock holdings ...
+
+        // Show the total cost as a negative number
+        showMoneyChangeEffect(-totalCost, 'buy');
+        updateDisplay();
+    } else {
+        showMessage("Not enough money to buy stock!");
+    }
+}
+function buy100Stock() {
+    // Calculate the total cost to buy one stock (including the fee)
+    let totalCost = currentStockPrice*100 + transactionFee;
+
+    // Check if the player has enough money to buy one stock
+    if (playerMoney >= totalCost) {
+        // Deduct the cost from the player's money
+        playerMoney -= totalCost;
+
+        // Increment the stock holdings since a stock is bought
+        stockHoldings += 100; // Assuming buying one stock at a time
+
+        // Update the display
+        updatePlayerMoney();
+        // ... any other updates related to stock holdings ...
+
+        // Show the total cost as a negative number
+        showMoneyChangeEffect(-totalCost, 'buy');
+        updateDisplay();
+    } else {
+        showMessage("Not enough money to buy stock!");
+    }
+}
 
 
 function sellStock() {
@@ -104,26 +159,58 @@ function sellStock() {
 
         // Show the earnings as a positive number
         showMoneyChangeEffect(totalEarnings, 'sell');
+        updateDisplay();
     } else {
         // Handle the case where there are no stocks to sell
         showMessage("No stocks to sell!");
     }
 }
+function sell10Stock() {
+    if (stockHoldings >= 10) {
+        let totalEarnings = currentStockPrice*10 - transactionFee;
 
+        stockHoldings -= 10;
+        playerMoney += totalEarnings;
 
-function updateDisplay() {
-    updatePlayerMoney();
-    document.getElementById('stockHoldings').innerText = 'Stock Holdings: ' + stockHoldings;
+        updatePlayerMoney();
+
+        showMoneyChangeEffect(totalEarnings, 'sell');
+        updateDisplay();
+    } else {
+    
+        showMessage("No stocks to sell!");
+    }
 }
+function sell100Stock() {
+    if (stockHoldings >= 100) {
+        let totalEarnings = currentStockPrice*100 - transactionFee;
+
+        stockHoldings -= 100;
+        playerMoney += totalEarnings;
+
+        updatePlayerMoney();
+
+        showMoneyChangeEffect(totalEarnings, 'sell');
+        updateDisplay();
+    } else {
+    
+        showMessage("No stocks to sell!");
+    }
+}
+
+
 
 // Fix debt, it goes -10 only and goes under//
 function payDebt() {
-    const debtPayment = 10000; // The amount to pay towards the debt
+    const debtPayment = 10001; // The amount to pay towards the debt
 
     if (playerMoney >= debtPayment) {
         // Deduct the payment from player's money and reduce the debt
         playerMoney -= debtPayment;
         playerDebt -= debtPayment;
+        playerMoney -= transactionFee;
+        showMoneyChangeEffect(-transactionFee);
+        updatePlayerMoney();
 
         // Update the display
         updatePlayerMoney();
@@ -136,9 +223,7 @@ function payDebt() {
     } else {
         showMessage("Not enough money to pay the debt!");
     }
-    playerMoney -= transactionFee;
-    showMoneyChangeEffect(-transactionFee);
-    updatePlayerMoney();
+  
 }
 
 function updatePlayerMoney() {

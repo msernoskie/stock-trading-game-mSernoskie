@@ -33,16 +33,12 @@ button:hover {
     background-color: #45a049;
 }
 
-#startScreen {
+#startScreen, #gameScreen, #gameOverScreen {
     text-align: center;
-    /* Add more styling as needed */
+    /* Additional styling as needed */
 }
 
-#gameScreen {
-    /* Add styling for your game screen */
-}
 #gameOverScreen {
-    display: none; /* Initially hidden, shown when game is over */
     background-color: white;
     width: 300px;
     margin: auto;
@@ -51,47 +47,59 @@ button:hover {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     color: red;
 }
+
 .money-change-effect {
-    position: absolute;
-    background-color: #fff;
-    color: #333;
-    border: 1px solid #333;
-    padding: 5px;
-    border-radius: 5px;
-    font-size: 1em;
-    opacity: 1;
-    pointer-events: none; /* So it doesn't block clicks */
+    /* ... */
 }
 
 @keyframes floatUpFadeOut {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-50px); 
-        opacity: 0;
-    }
+    /* ... */
 }
+
 .hidden {
     display: none;
+    opacity: 0;
 }
 
 #messageBox {
-    color: red; /* Or any style you prefer */
-    position: absolute;
-    bottom: 10px; /* Adjust as needed */
-    left: 50%;
-    transform: translateX(-50%);
-    opacity: 1; /* Start fully visible */
-    transition: opacity 4s ease; /* Transition for the opacity change */
+    /* ... */
 }
 
-.hidden {
-    display: none;
-    opacity: 0; /* Start with 0 opacity when hidden */
+#gameScreen .button-group {
+    text-align: center;
+    margin: 10px 0;
 }
 
-.fadeOut {
-    opacity: 0; /* End with 0 opacity */
+#gameScreen .button-group button {
+    display: block;
+    margin: 5px auto;
+}
+
+#gameScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-group {
+    margin: 10px 0;
+}
+
+.button-group button {
+    display: block;
+    margin-bottom: 5px;
+}
+.button-groups-container {
+    display: flex;
+    justify-content: center; /* Center the button groups */
+    gap: 20px; /* Space between the Buy and Sell groups */
+}
+.button-group button {
+    display: block;
+    margin-bottom: 5px; /* Space between buttons */
+}
+#gameScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

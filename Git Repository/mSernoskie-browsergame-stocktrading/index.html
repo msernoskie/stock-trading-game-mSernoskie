@@ -21,10 +21,23 @@
         <div id="stockHoldings">Stock Holdings:0</div>
         <div id="stockPrice">Stock Price: $100</div>
         <div id="playerMoney">Your Money: $0</div>
-        <div id="playerDebt">Your Debt: $100,000</div>
+        <div class="button-groups-container">
+        <div class="button-group" id="buyButtons">
         <button id="buyButton">Buy</button>
+        <button id="buy10Button">Buy 10</button>
+        <button id="buy100Button">Buy 100</button>
+        </div>
+        <div class="button-group" id="sellButtons">
         <button id="sellButton">Sell</button>
-        <button id="payDebtButton">Pay $10,000 Towards Debt</button>
+        <button id="sell10Button">Sell 10</button>
+        <button id="sell100Button">Sell 100</button>
+    </div>
+       
+</div>
+<div class="button-group" id="debtButtons">
+    <div id="playerDebt">Your Debt: $100,000</div>
+    <button id="payDebtButton">Pay $10,000 Towards Debt</button>
+</div>
             <div id="messageBox" class="hidden"></div>
         <!-- ... rest of your game elements ... -->
 <!-- Game Screen (Initially Hidden) -->
